@@ -1,0 +1,58 @@
+@startuml
+hide empty members
+title Ablaufdiagramm Einsatz Anzeige
+
+autonumber
+
+actor Leitstelle
+participant "Fritz.Box" as Fritzbox
+participant "Mail Server" as Mail <<all-inkl>>
+participant Thunderbird <<Mini-PC>>
+database EM_INPUT <<Ordner Dateisystem>>
+participant EM_OCR <<Mini-PC>>
+database Text_Input <<Ordner Dateisystem>>
+participant "Einsatz Monitor" as EM <<Mini-PC>>
+participant Drucker
+database EM_ARCHIV <<Ordner Dateisystem>>
+
+Activate Fritzbox
+Leitstelle -> Fritzbox : Fax an 09549/988617\nAbsender 0951/95544153
+Fritzbox -> Mail : Mail mit Fax als PDF attachment
+Activate Mail
+Mail -> Mail : Prüfung auf validem Absender
+alt Prüfung fehlgeschlagen
+    Mail -> Mail : Lösche Mail
+end
+Deactivate Mail
+Deactivate Fritzbox
+
+Thunderbird -> Mail : Prüfe auf neue Mails
+Activate Mail
+Mail --> Thunderbird : Mail
+Activate Thunderbird
+Deactivate Mail
+Thunderbird -> EM_INPUT : Extrahiere PDF aus\nMail in Ordner EM_INPUT\n(Regel mit FiltaQuilla)
+Deactivate Thunderbird
+
+EM_OCR -> EM_INPUT : Prüfe auf neue Datei
+EM_INPUT --> EM_OCR : Neue Datei
+Activate EM_OCR
+EM_OCR -> EM_OCR : Konvertiere PDF in\nTextdatei mit ghostscript
+EM_OCR -> EM_OCR : Werte Textdatei mit\ntesseract aus
+EM_OCR -> EM_OCR : Erstelle Datei für\nEinsatz Monitor
+EM_OCR -> Text_Input : Datei für Einsatz Monitor
+EM_OCR -> Drucker : Drucke Einsatz-PDF
+EM_OCR -> EM_ARCHIV : Verschiebe PDF in Archiv
+Deactivate EM_OCR
+
+EM -> Text_Input : Prüfe auf neue Datei
+Text_Input --> EM : Neue Datei
+Activate EM
+EM -> EM : Auswertung Textdatei
+EM -> EM : Anzeige Einsatz
+EM -> Drucker : (Script) Drucke\nEinsatzbericht Vorlage
+... 30 Minuten später ...
+EM -> EM : Rücksetzen\nEinsatz Anzeige
+Deactivate EM
+
+@enduml

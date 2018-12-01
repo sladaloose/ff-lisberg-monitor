@@ -1,5 +1,6 @@
 @startuml
 hide empty members
+title Deployment Diagramm
 
 folder "all-inkl hosting" {
 node "E-Mail-Server" as Mail
@@ -21,3 +22,4 @@ FB -r- PC : WLAN
 PC -d- Drucker : USB
 PC -d- Bildschirm : HDMI
 @enduml
+
