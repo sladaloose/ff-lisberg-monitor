@@ -12,15 +12,36 @@ Unsere Leitstelle Bamberg verschickt ein Einsatzfax, in dem alle relevanten und 
 
 ### Beschreibung der Knoten
 
+In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareausstattung.
+
 #### Fritz.Box
+
+Die aktuelle Fritz.Box ist eine 7390. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
 
 #### Mini PC
 
+Der "Mini PC" ist ein handelsüblicher PC mit einem Windows 10. Windows haben wir deshalb gewählt, weil das für die Software "Einsatz Monitor" erforderlich ist. Der "Mini PC" ist deshalb "Mini", weil er wirklich sehr kompakt ist und auch entsprechend stromsparend arbeiten kann - immerhin läuft dieser Rechner 24/7.
+
+Die Hardware-Eigenschaften des Rechners sind:
+- Intel Atom CPU D2550 @ 1,86 GHz
+- 4 GB RAM
+- 465 GB HDD
+- Grafikkarte AMD Radeon HD 6430M
+- WLAN via USB-Adapter
+
 #### Bildschirm
+
+Als Bildschirm verwenden wir einen handelsüblichen Flachbildfernseher mit HDMI-Eingang. Dieser ist mit einer Wandhalterung auf etwa 3 Metern Höhe befestigt.
+
+Damit der Bildschirm nicht 24/7 laufen muss, haben sich unsere findigen Kameraden eine Schaltung einfallen lassen, sodass der Monitor nur bei einem Einsatz oder nach manueller Schaltung aktiv ist. Siehe auch Kapitel [Schaltung für Monitor](#schaltung-für-monitor).
 
 #### Drucker
 
+Der Drucker ist ein **HP Laserjet 1022**. Ein Laserdrucker deshalb, weil diese Art von Drucker im Vergleich zu Tintendruckern sehr langlebig sind und es keine Gefahr gibt, dass Tintenpatronen eintrocknen. Zudem ist der Ausdruck wasserfest - da wir den Einsatzbefehl drucken und mitnehmen, ist das natürlich ein Vorteil.
+
 #### E-Mail-Server
+
+Der E-Mail-Server ist angemietet über den Provider der Domain **ff-lisberg.de**. 
 
 ### Konfiguration der Programme
 
