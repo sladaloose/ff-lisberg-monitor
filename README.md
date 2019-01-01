@@ -16,7 +16,7 @@ In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareaussta
 
 #### Fritz.Box
 
-Die aktuelle Fritz.Box ist eine 7390. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
+Der aktuelle Internet-Router ist eine **Fritz.Box 7390**. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
 
 #### Mini PC
 
@@ -41,7 +41,9 @@ Der Drucker ist ein **HP Laserjet 1022**. Ein Laserdrucker deshalb, weil diese A
 
 #### E-Mail-Server
 
-Der E-Mail-Server ist angemietet über den Provider der Domain **ff-lisberg.de**. 
+Der E-Mail-Server ist angemietet über den Provider der Domain **ff-lisberg.de**. Ein E-Mail-Server ist überhaupt erst notwendig, da wir das Fax von der Leitstelle via der Fritz-Box an eine E-Mail-Adresse schicken und von dort die Verteilung des Einsatzberichts an den Einsatz Monitor vornehmen, sowie eine Weiterleitung an den 1. und 2. Kommandanten (als Backup).
+
+Damit das sicher ist, verwenden wir hier nur E-Mail-Adressen der **ff-lisberg.de** Domain, verwenden hinreichend sichere Passwörter und übertragen Daten nur verschlüsselt.
 
 ### Konfiguration der Programme
 
