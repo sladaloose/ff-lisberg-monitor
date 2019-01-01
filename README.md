@@ -47,7 +47,15 @@ Damit das sicher ist, verwenden wir hier nur E-Mail-Adressen der **ff-lisberg.de
 
 ### Konfiguration der Programme
 
+In diesem Kapitel ist beschrieben, wie die einzelnen Knoten bzw. Programme konfiguriert sind. Dabei wird nicht immer die exakte Konfiguration angegeben, sondern nur angedeutet. Zum einen gibt es Einstellungen, die bei jeder Installation angepasst werden müssen und zum anderen sind die Einstellungen sicherheitsrelevant (bspw. Passwörter).
+
 #### Fritz.Box
+
+Die Fritz.Box baut einen Internetzugang auf und hält diesen offen. Es erfolgt Nachts zwischen 2 und 5 Uhr einen Zwangstrennung des Providers, zu der wir für einen kurzem Zeitraum offline sind und keine Faxe empfangen können.
+
+Als Netzwerkverbindung zwischen Fritz.Box (steht im Schulungsraum) und der Gerätehalle verwenden wir die WLAN-Schnittstelle. Das WLAN muss auf halbem Wege mittels eines Repeaters verstärkt werden.
+
+Die Telefoniefunktion der Fritz.Box ist so konfiguriert, dass Faxe empfangen werden können. Eingehende Faxe werden als E-Mail (mit dem Fax als PDF-Anhang) verschlüsselt an eine E-Mail-Adresse der Domain **ff-lisberg.de** versendet.
 
 #### Mail-Server
 
