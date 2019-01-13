@@ -57,7 +57,13 @@ Als Netzwerkverbindung zwischen Fritz.Box (steht im Schulungsraum) und der Gerä
 
 Die Telefoniefunktion der Fritz.Box ist so konfiguriert, dass Faxe empfangen werden können. Eingehende Faxe werden als E-Mail (mit dem Fax als PDF-Anhang) verschlüsselt an eine E-Mail-Adresse der Domain **ff-lisberg.de** versendet.
 
-#### Mail-Server
+#### E-Mail-Server
+
+Am E-Mail-Server gibt es im wesentlichen zwei wichtige Einstellungen. Das ist zum einen die E-Mail-Adresse selbst und zum anderen geeignete Filtereinstellungen, sodass nur tatsächliche Einsatzmeldungen verarbeitet werden.
+
+Die E-Mail-Adresse selbst ist mit einem modernen Provider sehr schnell erledigt. Dafür gibt es Konfigurationsmasken und es nicht nötig Konfigurationsdatien zu editieren. Wichtig ist hier nur ein ausreichend sicheres Passwort zu verwenden - unseres hat eine Qualität von 155 Bit, was einer Länge von 28 Zeichen entspricht.
+
+Da prinzipiell jeder eine E-Mail an diese Adresse schicken kann und wir ja nur wollen, dass eine Einsatzmeldung nur bei einem echten Einsatz erfolgt, brauchen wir noch geeignete Filterregeln. Das heißt, dass eine eingehend E-Mail geprüft wird und wenn diese nicht die von uns definierten Merkmale erfüllt, wird sie sofort gelöscht. Damit unser Schutz nicht umgangen werden kann, geben wir hier nur so viel Preis: Es ist ein Geheimnis, das unsere Fritz.Box beim Versand der E-Mail mit hinterlegt gegen das wir serverseitig prüfen.  
 
 #### Thunderbird
 
