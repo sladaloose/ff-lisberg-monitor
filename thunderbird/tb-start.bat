@@ -1,0 +1,1 @@
+PowerShell.exe -Command "& 'C:\Users\FF-Lisberg\Desktop\tb-start.ps1'"
