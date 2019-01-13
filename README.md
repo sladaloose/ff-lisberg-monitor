@@ -79,9 +79,10 @@ Am Thunderbird ist als Konfiguration der E-Mail-Account hinterlegt, den wir vorh
 
 ![Thunderbird Filter PDF Extrakt](pictures/thunderbird-filter-screenshot.png)
 
-Es gibt ein Problem mit Thunderbird, wenn der Rechner in der Nacht automatisch neu gestartet wird. Wir müssen sicher stellen, dass auch der Thunderbird gestartet wird, sonst werden ja keine E-Mails empfangen. Leider ist es so, dass sich das Programm in den Vordergrund legt. Das heißt im Falle eines Einsatzes sehen wir das Thunderbird Programm anstelle der Information wo wir tatsächlich hin fahren müssen. Um das zu umgehen, müssen wir noch die Extension "MinimizeToTray revived" installieren. Diese Extension legt Thunderbird in den SystemTray (die Symbole unten rechts neben der Uhr), wenn die Applikation minimiert ist. Zum Schluss müssen wir noch an der Verknüpfung zum Thunderbird, die wir im Autostart von Windows liegen haben, in den Eigenschaften definieren, dass die Applikation minimiert gestartet werden soll.
+Es gibt ein Problem mit Thunderbird, wenn der Rechner in der Nacht automatisch neu gestartet wird. Wir müssen sicher stellen, dass auch der Thunderbird gestartet wird, sonst werden ja keine E-Mails empfangen. Leider ist es so, dass sich das Programm in den Vordergrund legt. Das heißt im Falle eines Einsatzes sehen wir das Thunderbird Programm anstelle der Information wo wir tatsächlich hin fahren müssen. Um das zu umgehen, müssen wir noch die Extension "MinimizeToTray revived" installieren. Diese Extension legt Thunderbird in den SystemTray (die Symbole unten rechts neben der Uhr), wenn die Applikation minimiert ist.
 
-![Eigenschaften Thunderbird minimiert starten](pictures/thunderbird-start-minimized.png)
+Damit der Thunderbird tatsächlich automatisch nach Windows Neustart minimiert gestartet wird, brauchen wir noch ein kleines Script, das den Thunderbird minimiert. Das Script (PowerShell) startet Thunderbird, wartet 15 Sekunden und führt dann über die Windows-API die Minimieren Funktion des Fensters aus.
+Script: [Script](./tb-start.ps1)
 
 #### EM_OCR
 
