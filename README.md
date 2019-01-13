@@ -67,6 +67,16 @@ Da prinzipiell jeder eine E-Mail an diese Adresse schicken kann und wir ja nur w
 
 #### Thunderbird
 
+Am Mini PC verwenden wir das Proramm "Thunderbird" zum E-Mail Empfang. Das Programm ist etabliert, gilt im allgemeinen als stabil und holt regelmäßig neue E-Mails vom Server ab. Es hat den Nachteil, dass es für den Zweck (E-Mail-Empfang und extrahieren der PDF-Anlage) relativ viel Hauptspeicher benötigt. Es kann gut sein, dass wir den Thunderbird mittelfristig mit einem Script ersetzen, das die gleiche Aufgabe erfüllt - das Script müsste jedoch regelmäßig getriggert werden.
+
+Am Thunderbird ist als Konfiguration der E-Mail-Account hinterlegt, den wir vorher angelegt haben. Nun müssen wir noch eine Regel (in Thunderbird heißt das "Filter") definieren, die automatisch den PDF-Anhang eingehender E-Mails in einen Ordner auf der Festplatte extrahiert. Leider beherrscht das der Thunderbird standardmäßig nicht. Mit der Extension "FiltaQuilla" kann so eine Regel allerdings angelegt werden.
+
+![Thunderbird Filter PDF Extrakt](pictures/thunderbird-filter-screenshot.png)
+
+Es gibt ein Problem mit Thunderbird, wenn der Rechner in der Nacht automatisch neu gestartet wird. Wir müssen sicher stellen, dass auch der Thunderbird gestartet wird, sonst werden ja keine E-Mails empfangen. Leider ist es so, dass sich das Programm in den Vordergrund legt. Das heißt im Falle eines Einsatzes sehen wir das Thunderbird Programm anstelle der Information wo wir tatsächlich hin fahren müssen. Um das zu umgehen, müssen wir noch die Extension "MinimizeToTray revived" installieren. Diese Extension legt Thunderbird in den SystemTray (die Symbole unten rechts neben der Uhr), wenn die Applikation minimiert ist. Zum Schluss müssen wir noch an der Verknüpfung zum Thunderbird, die wir im Autostart von Windows liegen haben, in den Eigenschaften definieren, dass die Applikation minimiert gestartet werden soll.
+
+![Eigenschaften Thunderbird minimiert starten](pictures/thunderbird-start-minimized.png)
+
 #### EM_OCR
 
 #### Einsatz Monitor
