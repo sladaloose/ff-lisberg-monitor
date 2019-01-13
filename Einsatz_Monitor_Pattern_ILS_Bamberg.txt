@@ -1,0 +1,8 @@
+Straße{{STRASSE}}
+Ortsteil{{ORTSTEIL}}
+Ort{{ORT}}
+Objekt{{EINSATZSTICHWORT}}
+Sachverhalt{{SACHVERHALT}}
+Einsatznummer{{EINSATZNUMMER}}
+Zusatzinformation1{{ZUSATZFELD1:Zusatzinformation 1}}
+***ENDE DER DATEI***

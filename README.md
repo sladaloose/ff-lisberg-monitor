@@ -110,6 +110,27 @@ Folgende Einstellungen haben wir im EM OCR vorgenommen:
 
 #### Einsatz Monitor
 
+Als Anzeige Software eines Einsatzes verwenden wir den Einsatz Monitor von der Feuer Software GmbH (https://feuersoftware.com/forum/wcf/index.php?einsatzmonitor/). Diese Software wird dankenswerterweise von der Firma kostenfrei zur Verfügung gestellt.
+
+Nach der Installation haben wir folgende Konfiguration am Einsatz Monitor vorgenommen:
+- Auswertung
+    - Bei der "Auswertung" haben wir die "File Überwachung" aktiviert
+    - Als Pattern haben wir ein neues angelegt, mit folgendem Inhalt: [Einsatz Monitor Pattern](./Einsatz_Monitor_Pattern_ILS_Bamberg.txt)
+- Einstellungen
+    - Kategorie "Einsatz": Hier nehmen wir die Standardeinstellungen und lassen die Anzeige nach 45 Minuten zurück setzen
+    - Kategorie "Hintergrund": Als Hintergrundbild haben wir ein Bild unseres FF Hauses eingerichtet
+    - Kategorie "Karten":
+        - Provider: Open Street Map
+        - Marker: Rot
+        - Zoom: 15
+        - Breite: 31%
+        - Routenanzeige: ON
+        - Helikoptermodus: OFF
+        - Hydranten anzeigen: OFF
+    - Kategorie "Organisation": Hier haben wir die "FF Lisberg" und die Adresse eingetragen
+
+Zu guter letzt ist natürlich auch der Einsatz Monitor in der Autostart Gruppe von Windows hinterlegt, damit die Software nach jedem Rechnerneustart automatisch startet.
+
 ### Beschreibung der Schritte
 
 #### 1 - Fax von Leitstelle
