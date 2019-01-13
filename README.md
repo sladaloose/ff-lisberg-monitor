@@ -79,6 +79,35 @@ Es gibt ein Problem mit Thunderbird, wenn der Rechner in der Nacht automatisch n
 
 #### EM_OCR
 
+Wir verwenden die Software EM OCR von Stefan Seider um das ankommende Fax zu analysieren und auszuwerten. Das ließe sich zwar auch ohne machen, ist allerdings in Zusammenarbeit von ghostscript, tesseract und Einsatz Monitor eher sperrig und fehleranfällig. EM OCR leistet hier eine sehr gute Unterstützung.
+
+Neben EM OCR müssen auch noch die Software-Pakete tesseract und ghostscript installiert werden. Ghostscript verwandelt die PDF Datei in eine TIF Datei, die von tesseract weiter verarbeitet werden kann. Tesseract sucht in der TIF Datei nach Text und versucht diesen auszuwerten. Um seine Arbeit hier in Bezug auf den Einsatzfaxen bestens anwenden zu können, ist es nötig die Datei "alarm.traineddata" bereit zu stellen.
+
+Link zu EM OCR: https://feuersoftware.com/forum/index.php?thread/2125-em-ocr-einsatzmonitor-pdf-tiff-txt-fax-konverter-mit-ordner%C3%BCberwachung/
+
+Folgende Einstellungen haben wir im EM OCR vorgenommen:
+- "Eingangs-Ordner": Zeigt auf den Ordner, in den der Thunderbird die PDF-Anhänge eingehender E-Mails extrahiert
+- "Ausgabe-Ordner": Zeigt auf den Ordner, den der Einsatz Monitor als "Input Ordner" benutzt. Das ist üblicherweise C:\Users\<Profil>\Einsatz_Monitor\Text_Input
+- "Archiv-Ordner": In diesem Ordner legt EM OCR die PDF-Dateien ab, die bereits bearbeitet wurden. Dabei bekommen die Dateien einen neuen Dateinamen, der das aktuelle Datum und die aktuelle Uhrzeit enthält
+- "Tesseract-Pfad": Hier muss die tesseract.exe aus der tesseract Installation angegeben werden
+- "GhostScript-Pfad": Hier muss die ghostscript.exe aus der ghostscript Installation angegeben werden (heißt überlichweise gswin64c.exe)
+- "GS / Tesseract Einstellungen": Hier verwenden wir die Standardeinstellungen
+- "Druckeinstellungen": Hier legen wir fest, dass auf unserem angeschlossenen Drucker der Einsatz auch ausgedruckt wird
+- "EM-OCR mit Windows starten": Der Haken ist bei uns gesetzt, damit auch EM OCR nach jedem Neustart des Rechners wieder automatisch zur Verfügung steht
+- "Service starten bei Programmstart": Starten von EM OCR alleine reicht nicht aus; der Service muss aktiv sein, damit der Eingangs-Ordner tatsächlich überwacht wird
+- "Minimiert starten": Natürlich starten wir auch minimiert, damit sich der EM OCR nicht über den Einsatz Monitor legt
+- "AutoParser Einstellungen": Hier definieren wir, welche Felder aus dem Einsatzfax ausgewertet werden und welchen Namen die Werte für die Auswertung im Einsatz Monitor bekommen*
+    - Straße -> Straße
+    - Abschnitt -> Ortsteil
+    - Ort -> Ort
+    - Objekt -> Objekt
+    - Schlagwort -> Sachverhalt
+    - Einsatznummer -> Einsatznummer
+    - Prio -> Zusatzinformation1
+    - --> Jeweils ist der Haken bei "n/A" gesetzt, da es sein kann, dass die Leitstelle gewissen Informationen nicht immer überträgt
+
+*) Faktisch erstellt EM OCR eine Textdatei aus dem PDF und diese Textdatei wird dem Einsatz Monitor zur Verfügung gestellt. Der Einsatz Monitor muss freilich diese Datei erneut auswerten.
+
 #### Einsatz Monitor
 
 ### Beschreibung der Schritte
