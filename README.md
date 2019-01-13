@@ -3,6 +3,8 @@ Dieses Repository enthält eine Dokumentation über Einsatz Monitor bei FF Lisbe
 
 Der Einsatz Monitor für unsere Feuerwehr zeigt in der Gerätehalle den aktuellen Einsatz an, sodass jeder Kamerad weiß wo er hin muss und was ihm am Einsatzort erwartet. Im folgenden ist zu lesen, wie wir das umgesetzt haben.
 
+![Anzeige](./pictures/Anzeige.jpg)
+
 ## Übersicht Einsatzablauf
 Unsere Leitstelle Bamberg verschickt ein Einsatzfax, in dem alle relevanten und bekannten Daten für den Einsatz enthalten sind, zu jedem Einsatz an eine Telefonnummer. Eine Fritzbox verwaltet die Telefonnummer und empfängt auch das Fax. Das Fax werten wir maschinell aus und verwenden die Informationen für die Anzeige in der Gerätehalle. Zusätzlich wird das Fax automatisch gedruckt, sodass der Kommandant oder der Gruppenführer die Informationen gleich mit zum Einsatz nehmen kann.
 
@@ -13,6 +15,8 @@ Unsere Leitstelle Bamberg verschickt ein Einsatzfax, in dem alle relevanten und 
 ### Beschreibung der Knoten
 
 In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareausstattung.
+
+![Hardware](./pictures/Equipment.jpg)
 
 #### Fritz.Box
 
@@ -28,6 +32,8 @@ Die Hardware-Eigenschaften des Rechners sind:
 - 465 GB HDD
 - Grafikkarte AMD Radeon HD 6430M
 - WLAN via USB-Adapter
+
+![Mini-PC](./pictures/Mini-PC.jpg)
 
 #### Bildschirm
 
@@ -176,5 +182,7 @@ Zu guter letzt ist natürlich auch der Einsatz Monitor in der Autostart Gruppe v
 - Thunderbird minimieren
 
 ## Schaltung für Monitor
-- Wenn Einsatz fährt Tor automatisch hoch
-- Monitor bekommt Strom (aktuell noch über manuellem Kippschalter)
+
+Damit der Monitor nicht dauerhaft an ist und entsprechend Strom verbraucht, schalten wir ihn nur auf Bedarf ein. Geplant ist, dass wir eine Schaltung haben,die den Monitor automatisch anschaltet, sobald sich das Tor zur Gerätehalle öffnet (wird automatisch ausgelöst, wenn die Sirene getriggert wird). Aktuell verwenden wir noch einen Kippschalter, den ein Kamerad kurz betätigen muss.
+
+![Kippschalter für Monitor](./pictures/Stromschaltung.jpg)
