@@ -16,7 +16,7 @@ participant Drucker
 database EM_ARCHIV <<Ordner Dateisystem>>
 
 Activate Fritzbox
-Leitstelle -> Fritzbox : Fax an 09549/988617\nAbsender 0951/95544153
+Leitstelle -> Fritzbox : Fax an 09549/988???\nAbsender 0951/9554????
 Fritzbox -> Mail : Mail mit Fax als PDF attachment
 Activate Mail
 Mail -> Mail : Prüfung auf validem Absender
@@ -51,7 +51,7 @@ Activate EM
 EM -> EM : Auswertung Textdatei
 EM -> EM : Anzeige Einsatz
 EM -> Drucker : (Script) Drucke\nEinsatzbericht Vorlage
-... 30 Minuten später ...
+... 45 Minuten später ...
 EM -> EM : Rücksetzen\nEinsatz Anzeige
 Deactivate EM
 

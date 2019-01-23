@@ -1,0 +1,1 @@
+cmd /c ""<PATH_TO_ACRORD32EXE>" /n /s /h /t  <NAME_OF_PDF_FILE> "<NAME_OF_PRINTER>""

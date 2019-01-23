@@ -8,13 +8,11 @@ Der Einsatz Monitor für unsere Feuerwehr zeigt in der Gerätehalle den aktuelle
 ## Übersicht Einsatzablauf
 Unsere Leitstelle Bamberg verschickt ein Einsatzfax, in dem alle relevanten und bekannten Daten für den Einsatz enthalten sind, zu jedem Einsatz an eine Telefonnummer. Eine Fritzbox verwaltet die Telefonnummer und empfängt auch das Fax. Das Fax werten wir maschinell aus und verwenden die Informationen für die Anzeige in der Gerätehalle. Zusätzlich wird das Fax automatisch gedruckt, sodass der Kommandant oder der Gruppenführer die Informationen gleich mit zum Einsatz nehmen kann.
 
-![Deployment-Diagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/sladaloose/ff-lisberg-monitor/master/pictures/deployment-overview.iuml)
-
-![Ablaufdiagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/sladaloose/ff-lisberg-monitor/master/pictures/sequence-diagram.iuml)
-
 ### Beschreibung der Knoten
 
 In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareausstattung.
+
+![Deployment-Diagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/sladaloose/ff-lisberg-monitor/master/pictures/deployment-overview.iuml)
 
 ![Hardware](./pictures/Equipment.jpg)
 
@@ -32,6 +30,13 @@ Die Hardware-Eigenschaften des Rechners sind:
 - 465 GB HDD
 - Grafikkarte AMD Radeon HD 6430M
 - WLAN via USB-Adapter
+
+Folgende Software haben wir installiert:
+- Windows 10
+- Firefox
+- Adobe Acrobat Reader
+- EM_OCR
+- Einsatz Monitor
 
 ![Mini-PC](./pictures/Mini-PC.jpg)
 
@@ -143,41 +148,40 @@ Zu guter letzt ist natürlich auch der Einsatz Monitor in der Autostart Gruppe v
 
 ### Beschreibung der Schritte
 
-#### 1 - Fax von Leitstelle
+![Ablaufdiagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/sladaloose/ff-lisberg-monitor/master/pictures/sequence-diagram.iuml)
 
-#### 2 - Mail mit PDF
+1. Fax wird von Leitstelle an unsere Faxnummer geschickt. Das Fax wird von der Fritzbox in Empfang genommen.
+1. Das Fax wird von der Fritzbox in ein PDF konvertiert an eine E-Mail angehängt und diese an die hinterlegte E-Mail Adresse verschickt.
+1. Auf Serverseite prüfen wir, ob die E-Mail valide ist - wir wollen nicht, dass jede x-beliebige Mail eine Einsatzmeldung auslöst, sondern nur wenn tatsächlich ein Einsatz ist.
+1. Ist die Prüfung fehlgeschlagen, wird die E-Mail gelöscht - so haben unerwünschte E-Mails keine Chance.
+1. Auf dem Mini-PC prüft der E-Mail Client in regelmäßigen Abständen, ob es neue E-Mails gibt
+1. Gibt es neue, noch nicht abgerufene E-Mails, werden diese an den E-Mail Client geschickt
+1. Der E-Mail-Client extrahiert (wie oben beschrieben) das PDF aus der E-Mail und legt es in einen definierten Ordner "EM_INPUT" auf der lokalen Festplatte ab.
+1. Das Programm EM_OCR prüft regelmäßig auf neue Dateien in dem Ordner "EM_INPUT".
+1. Gibt es eine neue Datei, so wird die Verarbeitung im EM_OCR angestoßen.
+1. Zuerst wird das PDF in eine Textdatei konvertiert; zuerst mit Ghostscript in ein TIF, dann mit Tesseract in eine Textdatei (das erleichtert die weitere Verarbeitung).
+1. Danach wird die Textdatei ausgewertet in dem Schlüsselwörter (siehe oben) gesucht werden.
+1. Mit der Ergebnismenge wird eine neue Textdatei erzeugt, die nun die Software "Einsatz Monitor" in der Lage ist einfach auszuwerten.
+1. Die Datei für den "Einsatz Monitor" wird in den Ordner "Text_Input" auf der lokalen Festplatte kopiert.
+1. EM_OCR stößt außerdem einen Druck der originalen PDF-Datei an - damit haben wir die Einsatzmeldung auch ausgedruckt im Einsatz dabei.
+1. Das original PDF wird von EM_OCR auf der lokalen Festplatte archiviert.
+1. Die Software "Einsatz Monitor" prüft ebenfalls in regelmäßigen Abständen auf eine neue Datei im Ordner "Text_Input" (das heißt im Umkehrschluss, dass die Schritte 14 und 15 auch parallel zu 16 ablaufen können).
+1. Ist eine neue Datei vorhanden, legt die Software "Einsatz Monitor" los.
+1. Im "Einsatz Monitor" wird die Textdatei anhand des hinterlegten Patterns ausgewertet.
+1. Nun steht fest, wo der Einsatz stattfindet und die Anzeige am Monitor/TV wird umgeschalten.
+1. Im "Einsatz Monitor" kann hinterlegt werden welche Aktionen bei einem Einsatz ablaufen sollen. Hier nutzen wir neben den Standardeinstellungen lediglich die Option einen Script aufzurufen. Das Script (siehe [printscript.bat](./scripts/printscript.bat) und das Kapitel [Printscript](#Printscript) unten) druckt eine vorbereitete Datei, das Einsatzprotokoll.
+1. Etwa 45 Minuten später wird die Einsatzanzeige automatisch zurück gesetzt.
 
-#### 3 - Prüfung auf validem Absender
+## Printscript
 
-#### 4 - Lösche Mail bei fehlgeschlagener Prüfung
+Das Script öffnet den Adobe Acrobat Reader (dieser muss wie oben beschrieben natürlich installiert sein) mit Kommandozeile und übergibt das zu druckende PDF und stößt den Druckbefehl an.
 
-#### 5/6 - Prüfe auf neue Mails
+Bevor das Printscript tatsächlich eingesetzt werden kann, müssen folgende Variablen im Script ersetzt werden. Bitte unbedingt die Klammern <> mit ersetzen!
 
-#### 7 - Extrahiere PDF
-
-#### 8/9 - Prüfe auf neue PDF
-
-#### 10 - Konvertiere PDF in Textdatei
-
-#### 11 - Werte Textdatei aus
-
-#### 12 - Erstelle Datei für Einsatz Monitor
-
-#### 13 - Kopiere Datei für Einsatz Monitor
-
-#### 14 - Drucke Einsatz PDF
-
-#### 15 - Verschiebe PDF in Archiv
-
-#### 16/17 - Prüfe auf neue Datei
-
-#### 18 - Auswertung Textdatei
-
-#### 19 - Anzeige Einsatz
-
-#### 20 - Drucke Einsatzbericht Vorlage
-
-#### 21 - Setze Anzeige zurück
+Die Variablen sind mit folgenden Werten zu ersetzen:
+- PATH_TO_ACRORD32EXE = Pfad zur Datei ``AcroRd32.exe``; liegt typischerweise im Ordner ``C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\``.
+- NAME_OF_PDF_FILE = Name der Datei, die gedruckt werden soll. Die Datei muss im selben Verzeichnis liegen, wie das Script.
+- NAME_OF_PRINTER = Name des Druckers, wie in der Systemsteuerung sichtbar.
 
 ## Neustart um 4 Uhr
 
