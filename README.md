@@ -18,7 +18,7 @@ In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareaussta
 
 #### Fritz.Box
 
-Der aktuelle Internet-Router ist eine **Fritz.Box 7390**. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
+Der aktuelle Internet-Router ist eine **Fritz.Box 7490**. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
 
 #### Mini PC
 
