@@ -18,7 +18,7 @@ In diesem Kapitel befinden sich ein paar kurze Beschreibungen zur Hardwareaussta
 
 #### Fritz.Box
 
-Der aktuelle Internet-Router ist eine **Fritz.Box 7490**. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle.
+Der aktuelle Internet-Router ist eine **Fritz.Box 7490**. Diese stellt via VDSL einen Zugang zum Internet her, spannt ein WLAN-Netzwerk für das Feuerwehrhaus auf und kümmert sich um den Faxempfang von der Leitstelle. Der PC für den Einsatz Monitor ist via Ethernet an die Fritz.Box angeschlossen.
 
 #### Mini PC
 
@@ -29,7 +29,7 @@ Die Hardware-Eigenschaften des Rechners sind:
 - 4 GB RAM
 - 465 GB HDD
 - Grafikkarte AMD Radeon HD 6430M
-- WLAN via USB-Adapter
+- Netzwerkanschluss via Ethernet
 
 Folgende Software haben wir installiert:
 - Windows 10
@@ -64,7 +64,7 @@ In diesem Kapitel ist beschrieben, wie die einzelnen Knoten bzw. Programme konfi
 
 Die Fritz.Box baut einen Internetzugang auf und hält diesen offen. Es erfolgt Nachts zwischen 2 und 5 Uhr einen Zwangstrennung des Providers, zu der wir für einen kurzem Zeitraum offline sind und keine Faxe empfangen können.
 
-Als Netzwerkverbindung zwischen Fritz.Box (steht im Schulungsraum) und der Gerätehalle verwenden wir die WLAN-Schnittstelle. Das WLAN muss auf halbem Wege mittels eines Repeaters verstärkt werden.
+Als Netzwerkverbindung zwischen Fritz.Box (steht im Schulungsraum) und der Gerätehalle verwenden wir eine Ethernet-Verkabelung.
 
 Die Telefoniefunktion der Fritz.Box ist so konfiguriert, dass Faxe empfangen werden können. Eingehende Faxe werden als E-Mail (mit dem Fax als PDF-Anhang) verschlüsselt an eine E-Mail-Adresse der Domain **ff-lisberg.de** versendet.
 
@@ -183,11 +183,11 @@ Die Variablen sind mit folgenden Werten zu ersetzen:
 - NAME_OF_PDF_FILE = Name der Datei, die gedruckt werden soll. Die Datei muss im selben Verzeichnis liegen, wie das Script.
 - NAME_OF_PRINTER = Name des Druckers, wie in der Systemsteuerung sichtbar.
 
-## Neustart um 4 Uhr
+## Neustart Sonntags um 4 Uhr
 
-Wir haben die Erfahrung gemacht, dass sich der Einsatz Monitor nach einiger Zeit aufhängt und vermuten einen Memory Leak. Außerdem benötigt Windows selbst öfter mal einen Neustart um aktuelle Updates einzuspielen. Damit wir ein funktionierendes System haben, starten wir es täglich um 4 Uhr neu.
+Wir haben die Erfahrung gemacht, dass sich der Einsatz Monitor nach einiger Zeit aufhängt und vermuten einen Memory Leak. Außerdem benötigt Windows selbst öfter mal einen Neustart um aktuelle Updates einzuspielen. Damit wir ein funktionierendes System haben, starten wir es Sonntags um 4 Uhr neu.
 
-Dazu verwenden wir den Windows Task Scheduler (Deutsch: "Aufgabenplanung"). Hier haben wir einen Task eingerichtet, der täglich um 4 Uhr ausgeführt wird. Der Task ruft eine Batch-Datei auf die einen Reboot ansteuert.
+Dazu verwenden wir den Windows Task Scheduler (Deutsch: "Aufgabenplanung"). Hier haben wir einen Task eingerichtet, der Sonntags um 4 Uhr ausgeführt wird. Der Task ruft eine Batch-Datei auf die einen Reboot ansteuert.
 Batch Datei: [Batch Datei](./reboot/restart.bat)
 
 ## Schaltung für Monitor

@@ -18,7 +18,7 @@ node Bildschirm
 }
 
 FB -r- Mail : Internet
-FB -r- PC : WLAN
+FB -r- PC : Ethernet
 PC -d- Drucker : USB
 PC -d- Bildschirm : HDMI
 @enduml
