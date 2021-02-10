@@ -22,21 +22,22 @@ Der aktuelle Internet-Router ist eine **Fritz.Box 7490**. Diese stellt via VDSL 
 
 #### Mini PC
 
-Der "Mini PC" ist ein handelsüblicher PC mit einem Windows 10. Windows haben wir deshalb gewählt, weil das für die Software "Einsatz Monitor" erforderlich ist. Der "Mini PC" ist deshalb "Mini", weil er wirklich sehr kompakt ist und auch entsprechend stromsparend arbeiten kann - immerhin läuft dieser Rechner 24/7.
+Der "Mini PC" ist ein handelsüblicher PC mit Windows 10. Windows haben wir deshalb gewählt, weil das für die Software "Einsatz Monitor" erforderlich ist. Der "Mini PC" ist deshalb "Mini", weil er wirklich sehr kompakt ist und auch entsprechend stromsparend arbeiten kann - immerhin läuft dieser Rechner 24/7.
 
 Die Hardware-Eigenschaften des Rechners sind:
-- Intel Atom CPU D2550 @ 1,86 GHz
-- 4 GB RAM
-- 465 GB HDD
-- Grafikkarte AMD Radeon HD 6430M
+- Intel(R) Core(TM) i5-4690T CPU @ 2.50GHz
+- 12 GB RAM
+- 237 GB HDD
+- Grafikkarte Intel(R) HD Graphics 4600
 - Netzwerkanschluss via Ethernet
 
 Folgende Software haben wir installiert:
 - Windows 10
 - Firefox
-- Adobe Acrobat Reader
+- Thunderbird (+Add-on FiltaQuilla)
 - EM_OCR
 - Einsatz Monitor
+- Acrobat Reader
 
 ![Mini-PC](./pictures/Mini-PC.jpg)
 
@@ -49,6 +50,8 @@ Damit der Bildschirm nicht 24/7 laufen muss, haben sich unsere findigen Kamerade
 #### Drucker
 
 Der Drucker ist ein **HP Laserjet 1022**. Ein Laserdrucker deshalb, weil diese Art von Drucker im Vergleich zu Tintendruckern sehr langlebig sind und es keine Gefahr gibt, dass Tintenpatronen eintrocknen. Zudem ist der Ausdruck wasserfest - da wir den Einsatzbefehl drucken und mitnehmen, ist das natürlich ein Vorteil.
+
+Hinweis: Um den Druckertreiber in Windows 10 zu installieren, muss man speziell vorgehen. Der Drucker muss per USB verbunden sein, dann startet man den Assistenten um Drucker zu installieren, geht allerdings manuell vor. Als lokalen Port wählt man den `USB001 Virtual Port` aus. Nun muss man den Druckertreiber manuell auswählen - damit überhaupt welche geladen werden, muss man den Knopf `Windows Update` drücken. Es dauert mehrere Minuten, bis alle Treiber geladen sind. In der Liste wählt man dann unter `HP` den Treiber für den `HP LaserJet 1022n` aus. Damit hat es Stand Februar 2021 funktioniert.
 
 #### E-Mail-Server
 
@@ -72,7 +75,7 @@ Die Telefoniefunktion der Fritz.Box ist so konfiguriert, dass Faxe empfangen wer
 
 Am E-Mail-Server gibt es im wesentlichen zwei wichtige Einstellungen. Das ist zum einen die E-Mail-Adresse selbst und zum anderen geeignete Filtereinstellungen, sodass nur tatsächliche Einsatzmeldungen verarbeitet werden.
 
-Die E-Mail-Adresse selbst ist mit einem modernen Provider sehr schnell erledigt. Dafür gibt es Konfigurationsmasken und es nicht nötig Konfigurationsdatien zu editieren. Wichtig ist hier nur ein ausreichend sicheres Passwort zu verwenden - unseres hat eine Qualität von 155 Bit, was einer Länge von 28 Zeichen entspricht.
+Die E-Mail-Adresse selbst ist mit einem modernen Provider sehr schnell erledigt. Dafür gibt es Konfigurationsmasken und es nicht nötig Konfigurationsdateien zu editieren. Wichtig ist hier nur ein ausreichend sicheres Passwort zu verwenden - unseres hat eine Qualität von 155 Bit, was einer Länge von 28 Zeichen entspricht.
 
 Da prinzipiell jeder eine E-Mail an diese Adresse schicken kann und wir ja nur wollen, dass eine Einsatzmeldung nur bei einem echten Einsatz erfolgt, brauchen wir noch geeignete Filterregeln. Das heißt, dass eine eingehend E-Mail geprüft wird und wenn diese nicht die von uns definierten Merkmale erfüllt, wird sie sofort gelöscht. Damit unser Schutz nicht umgangen werden kann, geben wir hier nur so viel Preis: Es ist ein Geheimnis, das unsere Fritz.Box beim Versand der E-Mail mit hinterlegt gegen das wir serverseitig prüfen.  
 
@@ -84,9 +87,9 @@ Am Thunderbird ist als Konfiguration der E-Mail-Account hinterlegt, den wir vorh
 
 ![Thunderbird Filter PDF Extrakt](pictures/thunderbird-filter-screenshot.png)
 
-Es gibt ein Problem mit Thunderbird, wenn der Rechner in der Nacht automatisch neu gestartet wird. Wir müssen sicher stellen, dass auch der Thunderbird gestartet wird, sonst werden ja keine E-Mails empfangen. Leider ist es so, dass sich das Programm in den Vordergrund legt. Das heißt im Falle eines Einsatzes sehen wir das Thunderbird Programm anstelle der Information wo wir tatsächlich hin fahren müssen. Um das zu umgehen, müssen wir noch die Extension "MinimizeToTray revived" installieren. Diese Extension legt Thunderbird in den SystemTray (die Symbole unten rechts neben der Uhr), wenn die Applikation minimiert ist.
+Wichtig: In der Konfigurationsmaske für die Filterregel zur Ablage des PDF-Anhangs ist es wichtig als Bedingung `Keine Bedingung` auszuwählen.
 
-Damit der Thunderbird tatsächlich automatisch nach Windows Neustart minimiert gestartet wird, brauchen wir noch ein kleines Script, das den Thunderbird minimiert. Das Script (PowerShell) startet Thunderbird, wartet 15 Sekunden und führt dann über die Windows-API die Minimieren Funktion des Fensters aus.
+Damit der Thunderbird automatisch nach Windows Neustart (minimiert) gestartet wird, brauchen wir noch ein kleines Script, das den Thunderbird minimiert. Das Script (PowerShell) startet Thunderbird, wartet 15 Sekunden und führt dann über die Windows-API die Minimieren Funktion des Fensters aus.
 Script: [Script](./thunderbird/tb-start.ps1)
 
 Ein PowerShell script lässt sich schwierig über den Windows Autostart starten. Daher ist im Autostart eine Verknüpfung zu einer normalen Batch-Datei hinterlegt und die Batch-Datei startet das PowerShell Script.
@@ -96,7 +99,7 @@ Batch-Datei: [Batch-Datei]/./thunderbird/tb-start.bat)
 
 Wir verwenden die Software EM OCR von Stefan Seider um das ankommende Fax zu analysieren und auszuwerten. Das ließe sich zwar auch ohne machen, ist allerdings in Zusammenarbeit von ghostscript, tesseract und Einsatz Monitor eher sperrig und fehleranfällig. EM OCR leistet hier eine sehr gute Unterstützung.
 
-Neben EM OCR müssen auch noch die Software-Pakete tesseract und ghostscript installiert werden. Ghostscript verwandelt die PDF Datei in eine TIF Datei, die von tesseract weiter verarbeitet werden kann. Tesseract sucht in der TIF Datei nach Text und versucht diesen auszuwerten. Um seine Arbeit hier in Bezug auf den Einsatzfaxen bestens anwenden zu können, ist es nötig die Datei "alarm.traineddata" bereit zu stellen.
+Neben EM OCR müssen auch noch die Software-Pakete tesseract und ghostscript installiert werden. Ghostscript verwandelt die PDF Datei in eine TIF Datei, die von tesseract weiter verarbeitet werden kann. Tesseract sucht in der TIF Datei nach Text und versucht diesen auszuwerten. Um seine Arbeit hier in Bezug auf den Einsatzfaxen bestens anwenden zu können, ist es nötig die Datei `alarm.traineddata` bereit zu stellen. Hinweis: Für den Fall, dass die Leitstelle bereits Alarmfaxe mit neuer Schriftart versendet, muss die Datei `deu.traineddata` eingestellt werden.
 
 Link zu EM OCR: https://feuersoftware.com/forum/index.php?thread/2125-em-ocr-einsatzmonitor-pdf-tiff-txt-fax-konverter-mit-ordner%C3%BCberwachung/
 
@@ -183,11 +186,11 @@ Die Variablen sind mit folgenden Werten zu ersetzen:
 - NAME_OF_PDF_FILE = Name der Datei, die gedruckt werden soll. Die Datei muss im selben Verzeichnis liegen, wie das Script.
 - NAME_OF_PRINTER = Name des Druckers, wie in der Systemsteuerung sichtbar.
 
-## Neustart Sonntags um 4 Uhr
+## Neustart täglich um 3 Uhr
 
-Wir haben die Erfahrung gemacht, dass sich der Einsatz Monitor nach einiger Zeit aufhängt und vermuten einen Memory Leak. Außerdem benötigt Windows selbst öfter mal einen Neustart um aktuelle Updates einzuspielen. Damit wir ein funktionierendes System haben, starten wir es Sonntags um 4 Uhr neu.
+Wir haben die Erfahrung gemacht, dass sich der Einsatz Monitor nach einiger Zeit aufhängt und vermuten einen Memory Leak. Außerdem benötigt Windows selbst öfter mal einen Neustart um aktuelle Updates einzuspielen. Damit wir ein funktionierendes System haben, starten wir es täglich um 3 Uhr neu.
 
-Dazu verwenden wir den Windows Task Scheduler (Deutsch: "Aufgabenplanung"). Hier haben wir einen Task eingerichtet, der Sonntags um 4 Uhr ausgeführt wird. Der Task ruft eine Batch-Datei auf die einen Reboot ansteuert.
+Dazu verwenden wir den Windows Task Scheduler (Deutsch: "Aufgabenplanung"). Hier haben wir einen Task eingerichtet, der täglich um 3 Uhr ausgeführt wird. Der Task ruft eine Batch-Datei auf die einen Reboot ansteuert.
 Batch Datei: [Batch Datei](./reboot/restart.bat)
 
 ## Schaltung für Monitor
